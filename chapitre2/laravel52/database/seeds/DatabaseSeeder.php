@@ -1,9 +1,10 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use Faker\Factory;
 
-class DatabaseSeeder extends Seeder
-{
+class DatabaseSeeder extends Seeder {
+
     /**
      * Run the database seeds.
      *
@@ -11,9 +12,20 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
+        factory(App\Editeur::class, 40)->create();
+        factory(App\Auteur::class, 40)->create();
+        factory(App\Livre::class, 80)->create();
 
-        $this->call(UserTableSeeder::class);
-        $this->call(PostTableSeeder::class);
+        for ($i = 1; $i < 41; $i++) {
+            $number = rand(2, 8);
+            for ($j = 1; $j <= $number; $j++) {
+                DB::table('auteur_livre')->insert([
+                    'livre_id' => rand(1, 40),
+                    'auteur_id' => $i
+                ]);
+            }
+        }
 
     }
+
 }

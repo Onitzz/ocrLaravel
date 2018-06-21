@@ -19,3 +19,22 @@ $factory->define(App\User::class, function (Faker\Generator $faker) {
         'remember_token' => str_random(10),
     ];
 });
+$factory->define(App\Editeur::class, function (Faker\Generator $faker) {
+    return [
+        'nom' => $faker->name,
+    ];
+});
+
+$factory->define(App\Auteur::class, function (Faker\Generator $faker) {
+    return [
+        'nom' => $faker->name,
+    ];
+});
+
+$factory->define(App\Livre::class, function (Faker\Generator $faker) {
+    return [
+        'titre' => $faker->sentence(3),
+        'description' => $faker->text,
+        'editeur_id' => $faker->numberBetween(1, 40),
+    ];
+});

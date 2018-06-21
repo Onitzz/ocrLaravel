@@ -19,3 +19,8 @@ Route::resource('user', 'UserController');
 Route::auth();
 
 Route::get('/home', 'HomeController@index');
+
+Route::resource('post', 'PostController', ['except' => ['show', 'edit', 'update']]);
+
+Route::resource('post', 'PostController', ['except' => ['show', 'edit', 'update']]);
+Route::get('post/tag/{tag}', 'PostController@indexTag');
